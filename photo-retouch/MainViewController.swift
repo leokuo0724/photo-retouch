@@ -18,8 +18,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate & UI
         
         let image = info[.originalImage] as? UIImage
         
-        if let retouchController = storyboard?.instantiateViewController(identifier: "retouchViewController") as? RetouchViewController {
-            retouchController.editImage = image
+        if let retouchController = storyboard?.instantiateViewController(identifier: "retouchViewController", creator: { coder in
+            RetouchViewController(coder: coder, editImage: image!)
+        }) {
             show(retouchController, sender: nil)
         }
         dismiss(animated: true, completion: nil)
