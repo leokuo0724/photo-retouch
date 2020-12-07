@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB251F10257E693800038F5D /* RetouchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB251F0F257E693800038F5D /* RetouchViewController.swift */; };
 		EBFD5C74257E5BBC0049A1EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */; };
 		EBFD5C76257E5BBC0049A1EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */; };
-		EBFD5C78257E5BBC0049A1EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C77257E5BBC0049A1EC /* ViewController.swift */; };
 		EBFD5C7B257E5BBC0049A1EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFD5C79257E5BBC0049A1EC /* Main.storyboard */; };
 		EBFD5C7D257E5BBF0049A1EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFD5C7C257E5BBF0049A1EC /* Assets.xcassets */; };
 		EBFD5C80257E5BBF0049A1EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFD5C7E257E5BBF0049A1EC /* LaunchScreen.storyboard */; };
+		EBFD5C89257E64F90049A1EC /* EditImageUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C88257E64F90049A1EC /* EditImageUIView.swift */; };
+		EBFD5C8D257E67E20049A1EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C8C257E67E20049A1EC /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB251F0F257E693800038F5D /* RetouchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetouchViewController.swift; sourceTree = "<group>"; };
 		EBFD5C70257E5BBC0049A1EC /* photo-retouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "photo-retouch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EBFD5C77257E5BBC0049A1EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EBFD5C7A257E5BBC0049A1EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBFD5C7C257E5BBF0049A1EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBFD5C7F257E5BBF0049A1EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBFD5C81257E5BBF0049A1EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBFD5C88257E64F90049A1EC /* EditImageUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageUIView.swift; sourceTree = "<group>"; };
+		EBFD5C8C257E67E20049A1EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +60,12 @@
 		EBFD5C72257E5BBC0049A1EC /* photo-retouch */ = {
 			isa = PBXGroup;
 			children = (
+				EBFD5C88257E64F90049A1EC /* EditImageUIView.swift */,
+				EBFD5C8C257E67E20049A1EC /* MainViewController.swift */,
 				EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */,
 				EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */,
-				EBFD5C77257E5BBC0049A1EC /* ViewController.swift */,
 				EBFD5C79257E5BBC0049A1EC /* Main.storyboard */,
+				EB251F0F257E693800038F5D /* RetouchViewController.swift */,
 				EBFD5C7C257E5BBF0049A1EC /* Assets.xcassets */,
 				EBFD5C7E257E5BBF0049A1EC /* LaunchScreen.storyboard */,
 				EBFD5C81257E5BBF0049A1EC /* Info.plist */,
@@ -137,9 +143,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBFD5C78257E5BBC0049A1EC /* ViewController.swift in Sources */,
+				EB251F10257E693800038F5D /* RetouchViewController.swift in Sources */,
 				EBFD5C74257E5BBC0049A1EC /* AppDelegate.swift in Sources */,
+				EBFD5C89257E64F90049A1EC /* EditImageUIView.swift in Sources */,
 				EBFD5C76257E5BBC0049A1EC /* SceneDelegate.swift in Sources */,
+				EBFD5C8D257E67E20049A1EC /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
