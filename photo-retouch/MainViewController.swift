@@ -7,9 +7,7 @@
 
 import UIKit
 
-var imageCollection: Array<UIImage> = [
-    
-]
+var imageCollection: Array<UIImage> = []
 
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -23,7 +21,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         collectionLayout.itemSize = CGSize(width: fullScreenSize.width/3-10, height: fullScreenSize.width/3-10)
         collectionLayout.minimumLineSpacing = 5
         collectionLayout.scrollDirection = .vertical
-        collectionLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 36)
+        collectionLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 24)
     }
     
     override func viewWillAppear(_ animated: Bool) {
