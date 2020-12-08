@@ -16,25 +16,25 @@ class EditImageUIView: UIView {
     static var edgeSize: CGFloat = 44.0
     private typealias `Self` = EditImageUIView
 
-    let screenW = UIScreen.main.bounds.width
+    let screenW = UIScreen.main.bounds.width // 作為初始view長寬
     let screenH = UIScreen.main.bounds.height
+    let imageInitW: CGFloat
+    let imageInitH: CGFloat
     var currentEdge: Edge = .none
     var touchStart = CGPoint.zero
     var imageView = UIImageView()
     
     init?(frame: CGRect, editImage: UIImage) {
+        self.imageInitW = editImage.size.width
+        self.imageInitH = editImage.size.height
         super.init(frame: frame)
-        imageView.image = editImage
         
-        let imageWidth = editImage.size.width
-        let imageHeight = editImage.size.height
-        let selfWidth = self.frame.width
-        let selfHeight = self.frame.height
-        // 定位
-        imageView.frame.size = CGSize(width: screenW, height: (screenW*imageHeight)/imageWidth)
-        imageView.frame.origin = CGPoint(x: (selfWidth-imageView.frame.width)/2, y: (selfHeight-imageView.frame.height)/2)
-        self.backgroundColor = .black
+        imageView.image = editImage
         self.clipsToBounds = true
+        self.backgroundColor = .white
+        
+        // 定位
+        editInitialize()
         self.addSubview(imageView)
     }
 
@@ -42,6 +42,14 @@ class EditImageUIView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func editInitialize() {
+        // 初始定位
+        self.frame = CGRect(x: 0, y: (screenH-screenW)/2, width: screenW, height: screenW)
+        imageView.frame.size = CGSize(width: screenW, height: (screenW*imageInitH)/imageInitW)
+        imageView.frame.origin = CGPoint(x: (screenW-imageView.frame.width)/2, y: (screenW-imageView.frame.height)/2)
+    }
+    
+    // 拖拉
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
 
@@ -61,7 +69,6 @@ class EditImageUIView: UIView {
             }()
         }
     }
-
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let currentPoint = touch.location(in: self)
@@ -92,7 +99,6 @@ class EditImageUIView: UIView {
             }
         }
     }
-
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         currentEdge = .none
         self.frame.origin.x = (screenW-self.frame.width)/2
