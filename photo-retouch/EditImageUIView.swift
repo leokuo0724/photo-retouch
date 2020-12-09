@@ -99,19 +99,19 @@ class EditImageUIView: UIView {
             let deltaHeight = currentPoint.y - previous.y
 
             switch currentEdge {
-            case .topLeft:
-                self.frame = CGRect(x: originX + deltaWidth, y: originY + deltaHeight, width: width - deltaWidth, height: height - deltaHeight)
-                imageView.frame.origin.x -= deltaWidth
-                imageView.frame.origin.y -= deltaHeight
-            case .topRight:
-                self.frame = CGRect(x: originX, y: originY + deltaHeight, width: width + deltaWidth, height: height - deltaHeight)
-                imageView.frame.origin.y -= deltaHeight
-            case .bottomRight:
-                self.frame = CGRect(x: originX, y: originY, width: width + deltaWidth, height: height + deltaWidth)
-            case .bottomLeft:
-                self.frame = CGRect(x: originX + deltaWidth, y: originY, width: width - deltaWidth, height: height + deltaHeight)
-            default:
-                break
+                case .topLeft:
+                    self.frame = CGRect(x: originX + deltaWidth, y: originY + deltaHeight, width: width - deltaWidth, height: height - deltaHeight)
+                    imageView.frame.origin.x -= deltaWidth
+                    imageView.frame.origin.y -= deltaHeight
+                case .topRight:
+                    self.frame = CGRect(x: originX, y: originY + deltaHeight, width: width + deltaWidth, height: height - deltaHeight)
+                    imageView.frame.origin.y -= deltaHeight
+                case .bottomRight:
+                    self.frame = CGRect(x: originX, y: originY, width: width + deltaWidth, height: height + deltaWidth)
+                case .bottomLeft:
+                    self.frame = CGRect(x: originX + deltaWidth, y: originY, width: width - deltaWidth, height: height + deltaHeight)
+                default:
+                    break
             }
         }
     }
@@ -120,6 +120,12 @@ class EditImageUIView: UIView {
             return
         }
         currentEdge = .none
+        if (self.frame.width > UIScreen.main.bounds.width) {
+            self.frame.size.width = UIScreen.main.bounds.width
+        }
+        if (self.frame.height > UIScreen.main.bounds.width) {
+            self.frame.size.height = UIScreen.main.bounds.width
+        }
         self.frame.origin.x = (screenW-self.frame.width)/2
         self.frame.origin.y = (screenH-self.frame.height)/2
     }
@@ -131,13 +137,13 @@ class EditImageUIView: UIView {
         } else {
             self.rotateCounts -= 1
         }
-        self.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/180)*90*CGFloat(self.rotateCounts))
+        imageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/180)*90*CGFloat(self.rotateCounts))
     }
     func mirror() {
         if !isMirrored {
-            self.transform = CGAffineTransform(scaleX: -1, y: 1)
+            imageView.transform = CGAffineTransform(scaleX: -1, y: 1)
         } else {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+            imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
         isMirrored = !isMirrored
     }

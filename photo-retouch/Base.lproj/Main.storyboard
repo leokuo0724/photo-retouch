@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--修圖照片集-->
+        <!--My Studio-->
         <scene sceneID="HZ7-2y-6Si">
             <objects>
                 <viewController id="9h1-hY-wo3" customClass="MainViewController" customModule="photo_retouch" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g4s-p8-ac7">
-                                <rect key="frame" x="0.0" y="88" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WWb-o3-uI4">
@@ -53,10 +53,12 @@
                                     <outlet property="dataSource" destination="9h1-hY-wo3" id="6ua-Uk-por"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6k-RR-9uO">
-                                <rect key="frame" x="176" y="819" width="62" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6k-RR-9uO">
+                                <rect key="frame" x="183" y="799" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="選擇照片"/>
+                                <color key="backgroundColor" name="GrayColor"/>
+                                <color key="tintColor" name="PrimaryColor"/>
+                                <state key="normal" image="plus" catalog="system"/>
                                 <connections>
                                     <action selector="selectPhoto:" destination="9h1-hY-wo3" eventType="touchUpInside" id="V1k-5s-dwX"/>
                                 </connections>
@@ -65,10 +67,11 @@
                         <viewLayoutGuide key="safeArea" id="mpD-Yj-aKE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="修圖照片集" id="pGj-Ta-kqZ"/>
+                    <navigationItem key="navigationItem" title="My Studio" id="pGj-Ta-kqZ"/>
                     <connections>
                         <outlet property="collectionLayout" destination="WWb-o3-uI4" id="fEw-ti-ZEl"/>
                         <outlet property="collectionViewControl" destination="g4s-p8-ac7" id="bVz-UI-cJm"/>
+                        <outlet property="newButton" destination="i6k-RR-9uO" id="aza-QW-8hR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Si-uh-e0p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -272,6 +275,7 @@
         <image name="crop" catalog="system" width="128" height="116"/>
         <image name="crop.rotate" catalog="system" width="114" height="128"/>
         <image name="flip.horizontal" catalog="system" width="128" height="112"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="rotate.left" catalog="system" width="128" height="124"/>
         <image name="rotate.right" catalog="system" width="128" height="124"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
@@ -279,10 +283,10 @@
             <color red="0.95294117647058818" green="0.75686274509803919" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="GrayColor">
-            <color red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.13300000131130219" green="0.13300000131130219" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryColor">
-            <color red="0.95294117647058818" green="0.75686274509803919" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.95300000905990601" green="0.75700002908706665" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

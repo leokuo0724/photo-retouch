@@ -13,15 +13,22 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionViewControl: UICollectionView!
-
+    @IBOutlet weak var newButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let fullScreenSize = UIScreen.main.bounds.size
+        
+        // collection view 初始化
         collectionLayout.sectionInset = UIEdgeInsets(top:5, left: 5, bottom: 5, right: 5)
         collectionLayout.itemSize = CGSize(width: fullScreenSize.width/3-10, height: fullScreenSize.width/3-10)
         collectionLayout.minimumLineSpacing = 5
         collectionLayout.scrollDirection = .vertical
         collectionLayout.headerReferenceSize = CGSize(width: fullScreenSize.width, height: 24)
+        // button 初始化
+        newButton.layer.cornerRadius = newButton.frame.height/2
+        newButton.layer.shadowOpacity = 0.4
+        newButton.layer.shadowRadius = 8
     }
     
     override func viewWillAppear(_ animated: Bool) {

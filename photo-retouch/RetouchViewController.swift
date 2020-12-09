@@ -36,6 +36,7 @@ class RetouchViewController: UIViewController {
         editImageView = EditImageUIView(frame: CGRect(x: 0, y: (screenH-screenW)/2, width: screenW, height: screenW), editImage: editImage)!
         view.addSubview(editImageView!)
         
+        currentMode = .rotateMirror
         viewsInitSetting()
         setModeIcon()
     }
