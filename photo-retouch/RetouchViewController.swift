@@ -8,9 +8,14 @@
 import UIKit
 
 enum Mode {
-    case rotateMirror, crop
+    case rotateMirror, crop, colorControl
 }
+enum ColorControlMode {
+    case brightness, contrast, saturation
+}
+
 var currentMode: Mode = .rotateMirror
+var currentColorControlMode: ColorControlMode = .brightness
 
 class RetouchViewController: UIViewController {
     
@@ -18,7 +23,12 @@ class RetouchViewController: UIViewController {
     var editImageView: EditImageUIView?
     
     @IBOutlet weak var rotateMirrorBottom: NSLayoutConstraint!
+    @IBOutlet weak var colorControlBottom: NSLayoutConstraint!
     @IBOutlet weak var modeStackView: UIStackView!
+    @IBOutlet weak var colorControlBtnStackView: UIStackView!
+    @IBOutlet weak var colorControlLabel: UILabel!
+    @IBOutlet weak var colorControlSlider: UISlider!
+    
     
     init?(coder: NSCoder, editImage: UIImage) {
         self.editImage = editImage
@@ -39,6 +49,8 @@ class RetouchViewController: UIViewController {
         currentMode = .rotateMirror
         viewsInitSetting()
         setModeIcon()
+        
+        editImageView?.photoFilter(value: 0.3)
     }
     func viewsInitSetting() {
 //        rotateMirrorBottom.constant = -56
@@ -49,28 +61,47 @@ class RetouchViewController: UIViewController {
             ($0 as! UIButton).alpha = 0.3
         }
         // 收回次功能
-        setRotateMirrorSub(false)
+        setSubFeatureView(tragetConstraint: rotateMirrorBottom, value: -56)
+        setSubFeatureView(tragetConstraint: colorControlBottom, value: -140)
         
         if currentMode == .rotateMirror {
-            let rotateMirrorBtn = modeStackView.subviews.first(where: {
-                $0.tag == 0
-            })
-            rotateMirrorBtn?.alpha = 1
-            setRotateMirrorSub(true)
+            setIconActive(stackView: modeStackView, index: 0)
+            setSubFeatureView(tragetConstraint: rotateMirrorBottom, value: 0)
         } else if currentMode == .crop {
-            let rotateMirrorBtn = modeStackView.subviews.first(where: {
-                $0.tag == 1
-            })
-            rotateMirrorBtn?.alpha = 1
+            setIconActive(stackView: modeStackView, index: 1)
+        } else if currentMode == .colorControl {
+            setIconActive(stackView: modeStackView, index: 2)
+            setSubFeatureView(tragetConstraint: colorControlBottom, value: 0)
+            setColorControlSubIcon()
         }
     }
-    // 顯示 rotateMirror 次功能
-    func setRotateMirrorSub(_ bool: Bool) {
-        if bool {
-            rotateMirrorBottom.constant = 0
-        } else {
-            rotateMirrorBottom.constant = -56
+    func setColorControlSubIcon() {
+        // icon 淡色
+        colorControlBtnStackView.subviews.forEach {
+            ($0 as! UIButton).alpha = 0.3
         }
+        if currentColorControlMode == .brightness {
+            setIconActive(stackView: colorControlBtnStackView, index: 0)
+            colorControlLabel.text = "Brightness"
+            // 當前數值給 slider
+        } else if currentColorControlMode == .contrast {
+            setIconActive(stackView: colorControlBtnStackView, index: 1)
+            colorControlLabel.text = "Contrast"
+        } else if currentColorControlMode == .saturation {
+            setIconActive(stackView: colorControlBtnStackView, index: 2)
+            colorControlLabel.text = "Saturation"
+        }
+    }
+    // 顯示主功能 active
+    func setIconActive(stackView: UIStackView, index: Int) {
+        let icon = stackView.subviews.first(where: {
+            $0.tag == index
+        })
+        icon?.alpha = 1
+    }
+    // 顯示次功能面板
+    func setSubFeatureView(tragetConstraint: NSLayoutConstraint, value: CGFloat) {
+        tragetConstraint.constant = value
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -111,6 +142,7 @@ class RetouchViewController: UIViewController {
         editImageView?.mirror()
     }
     
+    // 圖片旋轉鏡射模式
     @IBAction func setRotateMirrorMode(_ sender: Any) {
         guard currentMode != .rotateMirror else {
             return
@@ -125,5 +157,40 @@ class RetouchViewController: UIViewController {
         }
         currentMode = .crop
         setModeIcon()
+    }
+    // 色彩調整模式
+    @IBAction func setColorControlMode(_ sender: Any) {
+        guard currentMode != .colorControl else {
+            return
+        }
+        currentMode = .colorControl
+        setModeIcon()
+    }
+    // 色彩調整-明度模式
+    @IBAction func setBrightnessMode(_ sender: Any) {
+        guard currentMode == .colorControl,
+              currentColorControlMode != .brightness else {
+            return
+        }
+        currentColorControlMode = .brightness
+        setColorControlSubIcon()
+    }
+    // 色彩調整-對比度模式
+    @IBAction func setContrastMode(_ sender: Any) {
+        guard currentMode == .colorControl,
+              currentColorControlMode != .contrast else {
+            return
+        }
+        currentColorControlMode = .contrast
+        setColorControlSubIcon()
+    }
+    // 色彩調整-飽和度模式
+    @IBAction func setSaturationMode(_ sender: Any) {
+        guard currentMode == .colorControl,
+              currentColorControlMode != .saturation else {
+            return
+        }
+        currentColorControlMode = .saturation
+        setColorControlSubIcon()
     }
 }

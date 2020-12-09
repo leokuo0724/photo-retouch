@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreImage
 
 class EditImageUIView: UIView {
 
@@ -146,5 +147,20 @@ class EditImageUIView: UIView {
             imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
         isMirrored = !isMirrored
+    }
+    
+    // 濾鏡
+    func photoFilter(value: Float) {
+        let ciImage = CIImage(image: imageView.image!)
+//        let filter = CIFilter.colorMonochrome()
+        let filter = CIFilter(name: "CIColorControls")
+        filter?.setValue(ciImage, forKey: kCIInputImageKey)
+        filter?.setValue(value, forKey: kCIInputBrightnessKey)
+//        filter.inputImage = ciImage
+//        filter.intensity = value
+        if let outputCImage = filter?.outputImage {
+            let filterImage = UIImage(ciImage: outputCImage)
+            imageView.image = filterImage
+        }
     }
 }

@@ -146,8 +146,73 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="FCb-s3-oVI">
-                                <rect key="frame" x="0.0" y="744" width="414" height="56"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EdB-gh-fql" userLabel="colorControlView">
+                                <rect key="frame" x="0.0" y="672" width="414" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yx-Xf-nwj">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="QQ4-7N-7tL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="PrimaryColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YxJ-LV-cex">
+                                        <rect key="frame" x="61" y="24" width="292" height="49"/>
+                                        <color key="tintColor" name="PrimaryColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="pBV-l8-DdU"/>
+                                            <constraint firstAttribute="width" constant="288" id="wpl-9c-6Ci"/>
+                                        </constraints>
+                                    </slider>
+                                    <stackView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="WQU-2J-DMU" userLabel="colorControlView">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIf-4t-xxy">
+                                                <rect key="frame" x="0.0" y="0.0" width="114" height="56"/>
+                                                <color key="tintColor" name="PrimaryColor"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="brightness" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="setBrightnessMode:" destination="V5S-WJ-zRd" eventType="touchUpInside" id="W3a-yh-43W"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58q-g2-3Wv">
+                                                <rect key="frame" x="150" y="0.0" width="114" height="56"/>
+                                                <color key="tintColor" name="PrimaryColor"/>
+                                                <state key="normal" image="contrast"/>
+                                                <connections>
+                                                    <action selector="setContrastMode:" destination="V5S-WJ-zRd" eventType="touchUpInside" id="dId-vj-Qdf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVV-1d-N1m">
+                                                <rect key="frame" x="300" y="0.0" width="114" height="56"/>
+                                                <color key="tintColor" name="PrimaryColor"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="drop" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="setSaturationMode:" destination="V5S-WJ-zRd" eventType="touchUpInside" id="Two-vk-jtV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="GrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="cTH-vH-gYb"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="WQU-2J-DMU" firstAttribute="leading" secondItem="EdB-gh-fql" secondAttribute="leading" id="UK4-LK-lka"/>
+                                    <constraint firstItem="3yx-Xf-nwj" firstAttribute="leading" secondItem="EdB-gh-fql" secondAttribute="leading" id="XRO-Tw-5d7"/>
+                                    <constraint firstAttribute="trailing" secondItem="WQU-2J-DMU" secondAttribute="trailing" id="oef-Q1-dhS"/>
+                                    <constraint firstAttribute="trailing" secondItem="3yx-Xf-nwj" secondAttribute="trailing" id="rOY-sX-SMv"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="FCb-s3-oVI" userLabel="rotateMirrorView">
+                                <rect key="frame" x="0.0" y="800" width="414" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pol-lf-hha">
                                         <rect key="frame" x="0.0" y="0.0" width="114" height="56"/>
@@ -189,7 +254,7 @@
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWz-on-AYM">
-                                        <rect key="frame" x="0.0" y="0.0" width="201" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="96"/>
                                         <color key="tintColor" name="PrimaryColor"/>
                                         <state key="normal">
                                             <imageReference key="image" image="crop.rotate" catalog="system" symbolScale="large"/>
@@ -207,7 +272,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I08-M9-AUs">
-                                        <rect key="frame" x="213" y="0.0" width="201" height="96"/>
+                                        <rect key="frame" x="142" y="0.0" width="130" height="96"/>
                                         <color key="tintColor" name="PrimaryColor"/>
                                         <state key="normal">
                                             <imageReference key="image" image="crop" catalog="system" symbolScale="large"/>
@@ -224,6 +289,24 @@
                                             <action selector="setCropMode:" destination="V5S-WJ-zRd" eventType="touchUpInside" id="n8w-Fp-NkD"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIh-qn-ssO">
+                                        <rect key="frame" x="284" y="0.0" width="130" height="96"/>
+                                        <color key="tintColor" name="PrimaryColor"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="camera.filters" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                <real key="value" value="0.59999999999999998"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="0.0" height="-4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="setColorControlMode:" destination="V5S-WJ-zRd" eventType="touchUpInside" id="KhN-fw-3Sk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="GrayColor"/>
                                 <constraints>
@@ -236,13 +319,20 @@
                         <constraints>
                             <constraint firstItem="XD9-11-fAq" firstAttribute="leading" secondItem="qVs-lK-fpT" secondAttribute="leading" id="2Pc-cn-LVx"/>
                             <constraint firstAttribute="bottom" secondItem="XD9-11-fAq" secondAttribute="bottom" id="K3J-O9-5Y3"/>
-                            <constraint firstItem="XD9-11-fAq" firstAttribute="top" secondItem="FCb-s3-oVI" secondAttribute="bottom" id="TBd-Ii-w0S"/>
+                            <constraint firstItem="XD9-11-fAq" firstAttribute="top" secondItem="FCb-s3-oVI" secondAttribute="bottom" constant="-56" id="TBd-Ii-w0S"/>
                             <constraint firstItem="FCb-s3-oVI" firstAttribute="leading" secondItem="a60-Eh-C4V" secondAttribute="leading" id="XNW-qz-wyI"/>
+                            <constraint firstItem="EdB-gh-fql" firstAttribute="leading" secondItem="qVs-lK-fpT" secondAttribute="leading" id="YhG-1w-i3S"/>
+                            <constraint firstAttribute="trailing" secondItem="EdB-gh-fql" secondAttribute="trailing" id="awd-VU-j2Q"/>
                             <constraint firstItem="a60-Eh-C4V" firstAttribute="trailing" secondItem="FCb-s3-oVI" secondAttribute="trailing" id="bNQ-qc-raC"/>
                             <constraint firstAttribute="trailing" secondItem="XD9-11-fAq" secondAttribute="trailing" id="iIw-Ea-I4V"/>
+                            <constraint firstItem="XD9-11-fAq" firstAttribute="top" secondItem="EdB-gh-fql" secondAttribute="bottom" id="m6m-EB-KHD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="colorControlBottom" destination="m6m-EB-KHD" id="2Qb-1f-SCr"/>
+                        <outlet property="colorControlBtnStackView" destination="WQU-2J-DMU" id="346-Jz-Adw"/>
+                        <outlet property="colorControlLabel" destination="3yx-Xf-nwj" id="mIt-jJ-cnL"/>
+                        <outlet property="colorControlSlider" destination="YxJ-LV-cex" id="KKP-DN-n2E"/>
                         <outlet property="modeStackView" destination="XD9-11-fAq" id="qOD-wg-6Hs"/>
                         <outlet property="rotateMirrorBottom" destination="TBd-Ii-w0S" id="zZO-NI-dqE"/>
                     </connections>
@@ -271,9 +361,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="brightness" width="24" height="24"/>
+        <image name="camera.filters" catalog="system" width="128" height="116"/>
         <image name="clear" catalog="system" width="128" height="114"/>
+        <image name="contrast" width="24" height="24"/>
         <image name="crop" catalog="system" width="128" height="116"/>
         <image name="crop.rotate" catalog="system" width="114" height="128"/>
+        <image name="drop" catalog="system" width="101" height="128"/>
         <image name="flip.horizontal" catalog="system" width="128" height="112"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="rotate.left" catalog="system" width="128" height="124"/>
