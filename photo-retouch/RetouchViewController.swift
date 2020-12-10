@@ -8,7 +8,7 @@
 import UIKit
 
 enum Mode {
-    case rotateMirror, crop, colorControl
+    case rotateMirror, crop, colorControl, photoEffect
 }
 enum ColorControlMode {
     case brightness, contrast, saturation
@@ -28,7 +28,8 @@ class RetouchViewController: UIViewController {
     @IBOutlet weak var colorControlBtnStackView: UIStackView!
     @IBOutlet weak var colorControlLabel: UILabel!
     @IBOutlet weak var colorControlSlider: UISlider!
-    
+    @IBOutlet weak var effectScrollContentView: UIView!
+    @IBOutlet weak var effectScrollView: UIScrollView!
     
     init?(coder: NSCoder, editImage: UIImage) {
         self.editImage = editImage
@@ -47,14 +48,20 @@ class RetouchViewController: UIViewController {
         view.addSubview(editImageView!)
         
         currentMode = .rotateMirror
-        viewsInitSetting()
         setModeIcon()
+        
+        // set photo effect scroll view
+        let defaultEffectView = PhotoEffectUIView(frame: CGRect(x: 12, y: 12, width: 114, height: 82), effectType: nil)
+        effectScrollContentView.addSubview(defaultEffectView)
+        for (index, type) in PhotoEffect.allCases.enumerated() {
+            let beginnerX = 12
+            let frame = CGRect(x: beginnerX+(index+1)*126, y: 12, width: 114, height: 82)
+            let effectUIView = PhotoEffectUIView(frame: frame, effectType: type)
+            effectScrollContentView.addSubview(effectUIView)
+        }
         
         // Notification
         NotificationCenter.default.addObserver(self, selector: #selector(setColorControlSub), name: NSNotification.Name(rawValue: "setColorControlSub"), object: nil)
-    }
-    func viewsInitSetting() {
-//        rotateMirrorBottom.constant = -56
     }
     func setModeIcon() {
         // icon 淡色
@@ -62,22 +69,26 @@ class RetouchViewController: UIViewController {
             ($0 as! UIButton).alpha = 0.3
         }
         // 收回次功能
-        setSubFeatureView(tragetConstraint: rotateMirrorBottom, value: -56)
-        setSubFeatureView(tragetConstraint: colorControlBottom, value: -140)
+        setSubFeatureViewConstraint(tragetConstraint: rotateMirrorBottom, value: -56)
+        setSubFeatureViewConstraint(tragetConstraint: colorControlBottom, value: -140)
+        setSubFeatureViewOrigin(targetView: effectScrollView, value: 800)
         
         if currentMode == .rotateMirror {
             setIconActive(stackView: modeStackView, index: 0)
-            setSubFeatureView(tragetConstraint: rotateMirrorBottom, value: 0)
+            setSubFeatureViewConstraint(tragetConstraint: rotateMirrorBottom, value: 0)
         } else if currentMode == .crop {
             setIconActive(stackView: modeStackView, index: 1)
         } else if currentMode == .colorControl {
             setIconActive(stackView: modeStackView, index: 2)
-            setSubFeatureView(tragetConstraint: colorControlBottom, value: 0)
+            setSubFeatureViewConstraint(tragetConstraint: colorControlBottom, value: 0)
             setColorControlSub()
+        } else if currentMode == .photoEffect {
+            setIconActive(stackView: modeStackView, index: 3)
+            setSubFeatureViewOrigin(targetView: effectScrollView, value: 694)
         }
     }
     @objc func setColorControlSub() {
-        let status = editImageView?.retouchStatus.colorControls
+        let status = retouchStatus.colorControls
         // icon 淡色
         colorControlBtnStackView.subviews.forEach {
             ($0 as! UIButton).alpha = 0.3
@@ -88,21 +99,21 @@ class RetouchViewController: UIViewController {
             // slider default:0 min:-1 max:1
             colorControlSlider.minimumValue = -0.5
             colorControlSlider.maximumValue = 0.5
-            colorControlSlider.setValue(status![0].value, animated: true)
+            colorControlSlider.setValue(status[0].value, animated: true)
         } else if currentColorControlMode == .contrast {
             setIconActive(stackView: colorControlBtnStackView, index: 1)
             colorControlLabel.text = "Contrast"
             // slider default:1 min:0 max:5
             colorControlSlider.minimumValue = 0
             colorControlSlider.maximumValue = 2
-            colorControlSlider.setValue(status![1].value, animated: true)
+            colorControlSlider.setValue(status[1].value, animated: true)
         } else if currentColorControlMode == .saturation {
             setIconActive(stackView: colorControlBtnStackView, index: 2)
             colorControlLabel.text = "Saturation"
             // slider default:1 min:0 max:5
             colorControlSlider.minimumValue = 0
             colorControlSlider.maximumValue = 2
-            colorControlSlider.setValue(status![2].value, animated: true)
+            colorControlSlider.setValue(status[2].value, animated: true)
         }
     }
     // 顯示主功能 active
@@ -113,10 +124,15 @@ class RetouchViewController: UIViewController {
         icon?.alpha = 1
     }
     // 顯示次功能面板
-    func setSubFeatureView(tragetConstraint: NSLayoutConstraint, value: CGFloat) {
+    func setSubFeatureViewConstraint(tragetConstraint: NSLayoutConstraint, value: CGFloat) {
         tragetConstraint.constant = value
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
+        }
+    }
+    func setSubFeatureViewOrigin(targetView: UIView, value: CGFloat) {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
+            targetView.frame.origin.y = value
         }
     }
     
@@ -213,13 +229,20 @@ class RetouchViewController: UIViewController {
         }
         switch currentColorControlMode {
         case .brightness:
-            editImageView?.retouchStatus.colorControls[0].value = sender.value
+            retouchStatus.colorControls[0].value = sender.value
         case .contrast:
-            editImageView?.retouchStatus.colorControls[1].value = sender.value
+            retouchStatus.colorControls[1].value = sender.value
         case .saturation:
-            editImageView?.retouchStatus.colorControls[2].value = sender.value
+            retouchStatus.colorControls[2].value = sender.value
         }
-        editImageView?.colorControlFilter()
+        editImageView?.useFilter()
+    }
+    @IBAction func setPhotoEffectMode(_ sender: Any) {
+        guard currentMode != .photoEffect else {
+            return
+        }
+        currentMode = .photoEffect
+        setModeIcon()
     }
     
 }

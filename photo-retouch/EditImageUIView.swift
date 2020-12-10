@@ -8,6 +8,8 @@
 import UIKit
 import CoreImage
 
+var retouchStatus = RetouchStatus()
+
 class EditImageUIView: UIView {
 
     enum Edge {
@@ -24,12 +26,14 @@ class EditImageUIView: UIView {
     var currentEdge: Edge = .none
     var touchStart = CGPoint.zero
     var imageView = UIImageView()
-    var image = UIImage()
+    let originalImage: UIImage
+    var displayImage = UIImage()
     
-    var retouchStatus = RetouchStatus()
+//    var retouchStatus = RetouchStatus()
     
     init?(frame: CGRect, editImage: UIImage) {
-        self.image = editImage
+        self.originalImage = editImage
+        self.displayImage = editImage.copy() as! UIImage
         self.imageInitW = editImage.size.width
         self.imageInitH = editImage.size.height
         super.init(frame: frame)
@@ -41,6 +45,9 @@ class EditImageUIView: UIView {
         // 定位
         editInitialize()
         self.addSubview(imageView)
+        
+        // Notify photo effect
+        NotificationCenter.default.addObserver(self, selector: #selector(useFilter), name: NSNotification.Name(rawValue: "useFilter"), object: nil)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -61,11 +68,14 @@ class EditImageUIView: UIView {
         }
         
         // 使用原圖片
-        imageView.image = image
-        // 色彩平衡歸零 TODO: 沒歸零
-        for var prop in retouchStatus.colorControls {
+        imageView.image = originalImage
+        // 色彩平衡歸零
+        for prop in retouchStatus.colorControls {
             prop.value = prop.defaultValue
         }
+        // 濾鏡歸零
+        retouchStatus.effect = nil
+        
         // slider 歸位
         NotificationCenter.default.post(name: NSNotification.Name("setColorControlSub"), object: nil)
     }
@@ -144,11 +154,11 @@ class EditImageUIView: UIView {
     
     func rotate(isPositiveDegree: Bool) {
         if isPositiveDegree {
-            self.retouchStatus.rotateCounts += 1
+            retouchStatus.rotateCounts += 1
         } else {
-            self.retouchStatus.rotateCounts -= 1
+            retouchStatus.rotateCounts -= 1
         }
-        imageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/180)*90*CGFloat(self.retouchStatus.rotateCounts))
+        imageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/180)*90*CGFloat(retouchStatus.rotateCounts))
     }
     func mirror() {
         if !retouchStatus.isMirrored {
@@ -159,19 +169,50 @@ class EditImageUIView: UIView {
         retouchStatus.isMirrored = !retouchStatus.isMirrored
     }
     
-    // 濾鏡
-    func colorControlFilter() {
+    // 色彩平衡
+    @objc func useFilter() {
         let status = retouchStatus.colorControls
-        
-        let ciImage = CIImage(image: image)
+
+        let ciImage = CIImage(image: displayImage)
         let filter = CIFilter(name: "CIColorControls")
         filter?.setValue(ciImage, forKey: kCIInputImageKey)
         filter?.setValue(status[0].value, forKey: kCIInputBrightnessKey)
         filter?.setValue(status[1].value, forKey: kCIInputContrastKey)
         filter?.setValue(status[2].value, forKey: kCIInputSaturationKey)
-        if let outputCImage = filter?.outputImage {
-            let filterImage = UIImage(ciImage: outputCImage)
-            imageView.image = filterImage
+        
+        // 是否有使用濾鏡
+        if let effectName = getEffectKey(effect: retouchStatus.effect) {
+            let effectFilter = CIFilter(name: effectName)
+            effectFilter?.setValue(filter?.outputImage, forKey: kCIInputImageKey)
+            if let outputCIImage = effectFilter?.outputImage {
+                let filterImage = UIImage(ciImage: outputCIImage)
+                imageView.image = filterImage
+            }
+        } else {
+            if let outputCIImage = filter?.outputImage {
+                let filterImage = UIImage(ciImage: outputCIImage)
+                imageView.image = filterImage
+            }
         }
     }
+    
+    // 快照
+//    func snapshot() {
+//        let renderer = UIGraphicsImageRenderer(size: imageView.bounds.size)
+//        let snapshotImage = renderer.image(actions: { (context) in
+//            imageView.drawHierarchy(in: imageView.bounds, afterScreenUpdates: true)
+//        })
+//        displayImage = snapshotImage
+//    }
+    
+    // 濾鏡效果
+//    func colorEffectFilter() {
+//        let ciImage = CIImage(image: imageView.image!)
+//        let filter = CIFilter(name: "CIPhotoEffectChrome")
+//        filter?.setValue(ciImage, forKey: kCIInputImageKey)
+//        if let outputCIImage = filter?.outputImage {
+//            let filterImage = UIImage(ciImage: outputCIImage)
+//            imageView.image = filterImage
+//        }
+//    }
 }

@@ -16,4 +16,5 @@ class RetouchStatus {
         FilterProp(type: .contrast, defaultValue: 1, value: 1),
         FilterProp(type: .saturation, defaultValue: 1, value: 1)
     ]
+    var effect: PhotoEffect? = nil
 }
