@@ -49,8 +49,6 @@ class RetouchViewController: UIViewController {
         currentMode = .rotateMirror
         viewsInitSetting()
         setModeIcon()
-        
-        editImageView?.photoFilter(value: 0.3)
     }
     func viewsInitSetting() {
 //        rotateMirrorBottom.constant = -56
@@ -76,6 +74,7 @@ class RetouchViewController: UIViewController {
         }
     }
     func setColorControlSubIcon() {
+        let status = editImageView?.retouchStatus.colorControls
         // icon 淡色
         colorControlBtnStackView.subviews.forEach {
             ($0 as! UIButton).alpha = 0.3
@@ -83,7 +82,11 @@ class RetouchViewController: UIViewController {
         if currentColorControlMode == .brightness {
             setIconActive(stackView: colorControlBtnStackView, index: 0)
             colorControlLabel.text = "Brightness"
-            // 當前數值給 slider
+            // 當前數值給 slider min:-1 mix:1
+            print("init slider")
+            colorControlSlider.minimumValue = -0.5
+            colorControlSlider.maximumValue = 0.5
+            colorControlSlider.setValue(status![0].value, animated: true)
         } else if currentColorControlMode == .contrast {
             setIconActive(stackView: colorControlBtnStackView, index: 1)
             colorControlLabel.text = "Contrast"
@@ -193,4 +196,17 @@ class RetouchViewController: UIViewController {
         currentColorControlMode = .saturation
         setColorControlSubIcon()
     }
+    // 色彩調整 Slider
+    @IBAction func slideColorControl(_ sender: UISlider) {
+        guard currentMode == .colorControl else {
+            return
+        }
+        switch currentColorControlMode {
+        case .brightness:
+            editImageView?.colorControlFilter(mode: .brightness, value: sender.value)
+        default:
+            break
+        }
+    }
+    
 }

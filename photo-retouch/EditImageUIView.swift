@@ -24,11 +24,12 @@ class EditImageUIView: UIView {
     var currentEdge: Edge = .none
     var touchStart = CGPoint.zero
     var imageView = UIImageView()
+    var image = UIImage()
     
-    var isMirrored: Bool = false
-    var rotateCounts: Int = 0
+    var retouchStatus = RetouchStatus()
     
     init?(frame: CGRect, editImage: UIImage) {
+        self.image = editImage
         self.imageInitW = editImage.size.width
         self.imageInitH = editImage.size.height
         super.init(frame: frame)
@@ -51,11 +52,11 @@ class EditImageUIView: UIView {
         imageView.frame.size = CGSize(width: screenW, height: (screenW*imageInitH)/imageInitW)
         imageView.frame.origin = CGPoint(x: (screenW-imageView.frame.width)/2, y: (screenW-imageView.frame.height)/2)
         
-        if isMirrored {
+        if retouchStatus.isMirrored {
             self.mirror()
         }
-        if rotateCounts % 4 != 0 {
-            rotateCounts = 0
+        if retouchStatus.rotateCounts % 4 != 0 {
+            retouchStatus.rotateCounts = 0
             self.transform = CGAffineTransform(rotationAngle: 0)
         }
     }
@@ -134,33 +135,44 @@ class EditImageUIView: UIView {
     
     func rotate(isPositiveDegree: Bool) {
         if isPositiveDegree {
-            self.rotateCounts += 1
+            self.retouchStatus.rotateCounts += 1
         } else {
-            self.rotateCounts -= 1
+            self.retouchStatus.rotateCounts -= 1
         }
-        imageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/180)*90*CGFloat(self.rotateCounts))
+        imageView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/180)*90*CGFloat(self.retouchStatus.rotateCounts))
     }
     func mirror() {
-        if !isMirrored {
+        if !retouchStatus.isMirrored {
             imageView.transform = CGAffineTransform(scaleX: -1, y: 1)
         } else {
             imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
-        isMirrored = !isMirrored
+        retouchStatus.isMirrored = !retouchStatus.isMirrored
     }
     
     // 濾鏡
-    func photoFilter(value: Float) {
-        let ciImage = CIImage(image: imageView.image!)
-//        let filter = CIFilter.colorMonochrome()
+    func colorControlFilter(mode: ColorControlMode, value: Float) {
+        
+//        var key: String = ""
+//        switch mode {
+//        case .brightness:
+//            key = kCIInputBrightnessKey
+//            retouchStatus.colorControls[0].value = value
+//        default:
+//            break
+//        }
+        
+        let ciImage = CIImage(image: image)
         let filter = CIFilter(name: "CIColorControls")
         filter?.setValue(ciImage, forKey: kCIInputImageKey)
         filter?.setValue(value, forKey: kCIInputBrightnessKey)
-//        filter.inputImage = ciImage
-//        filter.intensity = value
-        if let outputCImage = filter?.outputImage {
-            let filterImage = UIImage(ciImage: outputCImage)
-            imageView.image = filterImage
+//        if let outputCImage = filter?.outputImage {
+//            let filterImage = UIImage(ciImage: outputCImage)
+//            imageView.image = filterImage
+//        }
+        if let output = filter?.value(forKey: kCIOutputImageKey) as? CIImage {
+            let filteredImage = UIImage(ciImage: output)
+            imageView.image = filteredImage
         }
     }
 }

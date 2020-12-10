@@ -165,6 +165,9 @@
                                             <constraint firstAttribute="height" constant="48" id="pBV-l8-DdU"/>
                                             <constraint firstAttribute="width" constant="288" id="wpl-9c-6Ci"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="slideColorControl:" destination="V5S-WJ-zRd" eventType="valueChanged" id="Xg9-Fz-jvh"/>
+                                        </connections>
                                     </slider>
                                     <stackView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="WQU-2J-DMU" userLabel="colorControlView">
                                         <rect key="frame" x="0.0" y="72" width="414" height="56"/>
