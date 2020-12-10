@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB251F10257E693800038F5D /* RetouchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB251F0F257E693800038F5D /* RetouchViewController.swift */; };
 		EB30F88A2581B84500E93AAE /* RetouchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F8892581B84500E93AAE /* RetouchStatus.swift */; };
+		EB30F88E2581FA8600E93AAE /* FilterProp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F88D2581FA8600E93AAE /* FilterProp.swift */; };
 		EBE140C2257FBA63009B5249 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE140C1257FBA63009B5249 /* PhotoCell.swift */; };
 		EBFD5C74257E5BBC0049A1EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */; };
 		EBFD5C76257E5BBC0049A1EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		EB251F0F257E693800038F5D /* RetouchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetouchViewController.swift; sourceTree = "<group>"; };
 		EB30F8892581B84500E93AAE /* RetouchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetouchStatus.swift; sourceTree = "<group>"; };
+		EB30F88D2581FA8600E93AAE /* FilterProp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProp.swift; sourceTree = "<group>"; };
 		EBE140C1257FBA63009B5249 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		EBFD5C70257E5BBC0049A1EC /* photo-retouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "photo-retouch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */,
 				EBFD5C79257E5BBC0049A1EC /* Main.storyboard */,
 				EB30F8892581B84500E93AAE /* RetouchStatus.swift */,
+				EB30F88D2581FA8600E93AAE /* FilterProp.swift */,
 				EBE140C1257FBA63009B5249 /* PhotoCell.swift */,
 				EB251F0F257E693800038F5D /* RetouchViewController.swift */,
 				EBFD5C7C257E5BBF0049A1EC /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 			files = (
 				EB251F10257E693800038F5D /* RetouchViewController.swift in Sources */,
 				EBFD5C74257E5BBC0049A1EC /* AppDelegate.swift in Sources */,
+				EB30F88E2581FA8600E93AAE /* FilterProp.swift in Sources */,
 				EBFD5C89257E64F90049A1EC /* EditImageUIView.swift in Sources */,
 				EB30F88A2581B84500E93AAE /* RetouchStatus.swift in Sources */,
 				EBFD5C76257E5BBC0049A1EC /* SceneDelegate.swift in Sources */,

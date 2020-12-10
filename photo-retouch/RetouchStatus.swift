@@ -12,13 +12,8 @@ class RetouchStatus {
     var isMirrored: Bool = false
     var rotateCounts: Int = 0
     var colorControls: Array<FilterProp> = [
-        FilterProp(type: .brightness, value: 0),
-        FilterProp(type: .contrast, value: 1),
-        FilterProp(type: .saturation, value: 1)
+        FilterProp(type: .brightness, defaultValue: 0, value: 0),
+        FilterProp(type: .contrast, defaultValue: 1, value: 1),
+        FilterProp(type: .saturation, defaultValue: 1, value: 1)
     ]
-}
-
-struct FilterProp {
-    let type: ColorControlMode
-    var value: Float
 }

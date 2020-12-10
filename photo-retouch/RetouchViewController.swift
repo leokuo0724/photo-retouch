@@ -49,6 +49,9 @@ class RetouchViewController: UIViewController {
         currentMode = .rotateMirror
         viewsInitSetting()
         setModeIcon()
+        
+        // Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(setColorControlSub), name: NSNotification.Name(rawValue: "setColorControlSub"), object: nil)
     }
     func viewsInitSetting() {
 //        rotateMirrorBottom.constant = -56
@@ -70,10 +73,10 @@ class RetouchViewController: UIViewController {
         } else if currentMode == .colorControl {
             setIconActive(stackView: modeStackView, index: 2)
             setSubFeatureView(tragetConstraint: colorControlBottom, value: 0)
-            setColorControlSubIcon()
+            setColorControlSub()
         }
     }
-    func setColorControlSubIcon() {
+    @objc func setColorControlSub() {
         let status = editImageView?.retouchStatus.colorControls
         // icon 淡色
         colorControlBtnStackView.subviews.forEach {
@@ -82,17 +85,24 @@ class RetouchViewController: UIViewController {
         if currentColorControlMode == .brightness {
             setIconActive(stackView: colorControlBtnStackView, index: 0)
             colorControlLabel.text = "Brightness"
-            // 當前數值給 slider min:-1 mix:1
-            print("init slider")
+            // slider default:0 min:-1 max:1
             colorControlSlider.minimumValue = -0.5
             colorControlSlider.maximumValue = 0.5
             colorControlSlider.setValue(status![0].value, animated: true)
         } else if currentColorControlMode == .contrast {
             setIconActive(stackView: colorControlBtnStackView, index: 1)
             colorControlLabel.text = "Contrast"
+            // slider default:1 min:0 max:5
+            colorControlSlider.minimumValue = 0
+            colorControlSlider.maximumValue = 2
+            colorControlSlider.setValue(status![1].value, animated: true)
         } else if currentColorControlMode == .saturation {
             setIconActive(stackView: colorControlBtnStackView, index: 2)
             colorControlLabel.text = "Saturation"
+            // slider default:1 min:0 max:5
+            colorControlSlider.minimumValue = 0
+            colorControlSlider.maximumValue = 2
+            colorControlSlider.setValue(status![2].value, animated: true)
         }
     }
     // 顯示主功能 active
@@ -176,7 +186,7 @@ class RetouchViewController: UIViewController {
             return
         }
         currentColorControlMode = .brightness
-        setColorControlSubIcon()
+        setColorControlSub()
     }
     // 色彩調整-對比度模式
     @IBAction func setContrastMode(_ sender: Any) {
@@ -185,7 +195,7 @@ class RetouchViewController: UIViewController {
             return
         }
         currentColorControlMode = .contrast
-        setColorControlSubIcon()
+        setColorControlSub()
     }
     // 色彩調整-飽和度模式
     @IBAction func setSaturationMode(_ sender: Any) {
@@ -194,7 +204,7 @@ class RetouchViewController: UIViewController {
             return
         }
         currentColorControlMode = .saturation
-        setColorControlSubIcon()
+        setColorControlSub()
     }
     // 色彩調整 Slider
     @IBAction func slideColorControl(_ sender: UISlider) {
@@ -203,10 +213,13 @@ class RetouchViewController: UIViewController {
         }
         switch currentColorControlMode {
         case .brightness:
-            editImageView?.colorControlFilter(mode: .brightness, value: sender.value)
-        default:
-            break
+            editImageView?.retouchStatus.colorControls[0].value = sender.value
+        case .contrast:
+            editImageView?.retouchStatus.colorControls[1].value = sender.value
+        case .saturation:
+            editImageView?.retouchStatus.colorControls[2].value = sender.value
         }
+        editImageView?.colorControlFilter()
     }
     
 }

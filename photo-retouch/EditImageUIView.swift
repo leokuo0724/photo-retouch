@@ -59,6 +59,15 @@ class EditImageUIView: UIView {
             retouchStatus.rotateCounts = 0
             self.transform = CGAffineTransform(rotationAngle: 0)
         }
+        
+        // 使用原圖片
+        imageView.image = image
+        // 色彩平衡歸零 TODO: 沒歸零
+        for var prop in retouchStatus.colorControls {
+            prop.value = prop.defaultValue
+        }
+        // slider 歸位
+        NotificationCenter.default.post(name: NSNotification.Name("setColorControlSub"), object: nil)
     }
     
     // 拖拉
@@ -151,28 +160,18 @@ class EditImageUIView: UIView {
     }
     
     // 濾鏡
-    func colorControlFilter(mode: ColorControlMode, value: Float) {
-        
-//        var key: String = ""
-//        switch mode {
-//        case .brightness:
-//            key = kCIInputBrightnessKey
-//            retouchStatus.colorControls[0].value = value
-//        default:
-//            break
-//        }
+    func colorControlFilter() {
+        let status = retouchStatus.colorControls
         
         let ciImage = CIImage(image: image)
         let filter = CIFilter(name: "CIColorControls")
         filter?.setValue(ciImage, forKey: kCIInputImageKey)
-        filter?.setValue(value, forKey: kCIInputBrightnessKey)
-//        if let outputCImage = filter?.outputImage {
-//            let filterImage = UIImage(ciImage: outputCImage)
-//            imageView.image = filterImage
-//        }
-        if let output = filter?.value(forKey: kCIOutputImageKey) as? CIImage {
-            let filteredImage = UIImage(ciImage: output)
-            imageView.image = filteredImage
+        filter?.setValue(status[0].value, forKey: kCIInputBrightnessKey)
+        filter?.setValue(status[1].value, forKey: kCIInputContrastKey)
+        filter?.setValue(status[2].value, forKey: kCIInputSaturationKey)
+        if let outputCImage = filter?.outputImage {
+            let filterImage = UIImage(ciImage: outputCImage)
+            imageView.image = filterImage
         }
     }
 }
