@@ -246,7 +246,7 @@
                                             <action selector="changeFontSize:" destination="V5S-WJ-zRd" eventType="valueChanged" id="Fbi-GO-9GF"/>
                                         </connections>
                                     </slider>
-                                    <stackView opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1l7-U4-Amo">
+                                    <stackView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1l7-U4-Amo">
                                         <rect key="frame" x="0.0" y="48" width="414" height="56"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ep9-Hb-z7i">

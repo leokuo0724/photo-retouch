@@ -82,6 +82,10 @@ class RetouchViewController: UIViewController {
         setSubFeatureViewConstraint(tragetConstraint: colorControlBottom, value: -140)
         setSubFeatureViewOrigin(targetView: effectScrollView, value: 800)
         setSubFeatureViewConstraint(tragetConstraint: textFieldBottom, value: -104)
+        // 取消文字編輯
+        if let textField = editImageView!.textField {
+            textField.isEnabled = false
+        }
         
         if currentMode == .rotateMirror {
             setIconActive(stackView: modeStackView, index: 0)
@@ -99,6 +103,9 @@ class RetouchViewController: UIViewController {
             setIconActive(stackView: modeStackView, index: 4)
             setSubFeatureViewConstraint(tragetConstraint: textFieldBottom, value: 0)
             setTextEditSub()
+            if let textField = editImageView!.textField {
+                textField.isEnabled = true
+            }
         }
     }
     @objc func setColorControlSub() {
