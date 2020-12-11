@@ -76,10 +76,8 @@ class EditImageUIView: UIView {
         retouchStatus.effect = nil
         
         // 移除文字
-        if let textField = textField {
-            retouchStatus.textField = nil
-            removeTextField()
-        }
+        removeTextField()
+        retouchStatus.textField = nil
         
         // slider 歸位、文字狀態解除
         NotificationCenter.default.post(name: NSNotification.Name("refreshViews"), object: nil)

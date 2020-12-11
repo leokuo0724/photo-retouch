@@ -57,7 +57,9 @@ class RetouchViewController: UIViewController {
         view.addSubview(editImageView!)
         
         currentMode = .rotateMirror
-        setModeIcon()
+        editImageView?.editInitialize()
+        print(editImageView?.textField)
+        refreshViews()
         
         // set photo effect scroll view
         let defaultEffectView = PhotoEffectUIView(frame: CGRect(x: 12, y: 12, width: 114, height: 82), effectType: nil)
@@ -111,6 +113,7 @@ class RetouchViewController: UIViewController {
     @objc func refreshViews() {
         setModeIcon()
         setColorControlSub()
+        setTextEditSub()
     }
     func setColorControlSub() {
         let status = retouchStatus.colorControls
