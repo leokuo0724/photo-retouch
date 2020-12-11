@@ -235,7 +235,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XUq-sn-Cja">
                                 <rect key="frame" x="0.0" y="696" width="414" height="104"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="28" minValue="12" maxValue="56" translatesAutoresizingMaskIntoConstraints="NO" id="P43-8e-THF">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="28" minValue="12" maxValue="64" translatesAutoresizingMaskIntoConstraints="NO" id="P43-8e-THF">
                                         <rect key="frame" x="61" y="0.0" width="292" height="49"/>
                                         <color key="tintColor" name="PrimaryColor"/>
                                         <constraints>

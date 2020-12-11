@@ -312,6 +312,7 @@ class RetouchViewController: UIViewController {
         guard retouchStatus.textField != nil else {
             return
         }
+        retouchStatus.textField?.fontSize = sender.value
         editImageView!.setFontSize(value: sender.value)
     }
     @IBAction func setTextColorWhite(_ sender: Any) {
