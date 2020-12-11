@@ -8,7 +8,7 @@
 import UIKit
 
 enum Mode {
-    case rotateMirror, crop, colorControl, photoEffect
+    case rotateMirror, crop, colorControl, photoEffect, textEdit
 }
 enum ColorControlMode {
     case brightness, contrast, saturation
@@ -24,12 +24,21 @@ class RetouchViewController: UIViewController {
     
     @IBOutlet weak var rotateMirrorBottom: NSLayoutConstraint!
     @IBOutlet weak var colorControlBottom: NSLayoutConstraint!
+    @IBOutlet weak var textFieldBottom: NSLayoutConstraint!
+    
     @IBOutlet weak var modeStackView: UIStackView!
     @IBOutlet weak var colorControlBtnStackView: UIStackView!
     @IBOutlet weak var colorControlLabel: UILabel!
     @IBOutlet weak var colorControlSlider: UISlider!
     @IBOutlet weak var effectScrollContentView: UIView!
     @IBOutlet weak var effectScrollView: UIScrollView!
+    
+    @IBOutlet weak var textColorWhiteBtn: UIButton!
+    @IBOutlet weak var textColorBlackBtn: UIButton!
+    @IBOutlet weak var addTextBtn: UIButton!
+    @IBOutlet weak var removeTextBtn: UIButton!
+    @IBOutlet weak var textSizeSlider: UISlider!
+    
     
     init?(coder: NSCoder, editImage: UIImage) {
         self.editImage = editImage
@@ -72,6 +81,7 @@ class RetouchViewController: UIViewController {
         setSubFeatureViewConstraint(tragetConstraint: rotateMirrorBottom, value: -56)
         setSubFeatureViewConstraint(tragetConstraint: colorControlBottom, value: -140)
         setSubFeatureViewOrigin(targetView: effectScrollView, value: 800)
+        setSubFeatureViewConstraint(tragetConstraint: textFieldBottom, value: -104)
         
         if currentMode == .rotateMirror {
             setIconActive(stackView: modeStackView, index: 0)
@@ -85,6 +95,10 @@ class RetouchViewController: UIViewController {
         } else if currentMode == .photoEffect {
             setIconActive(stackView: modeStackView, index: 3)
             setSubFeatureViewOrigin(targetView: effectScrollView, value: 694)
+        } else if currentMode == .textEdit {
+            setIconActive(stackView: modeStackView, index: 4)
+            setSubFeatureViewConstraint(tragetConstraint: textFieldBottom, value: 0)
+            setTextEditSub()
         }
     }
     @objc func setColorControlSub() {
@@ -114,6 +128,22 @@ class RetouchViewController: UIViewController {
             colorControlSlider.minimumValue = 0
             colorControlSlider.maximumValue = 2
             colorControlSlider.setValue(status[2].value, animated: true)
+        }
+    }
+    func setTextEditSub() {
+        if let textFieldStatus = retouchStatus.textField {
+            textColorWhiteBtn.isEnabled = true
+            textColorBlackBtn.isEnabled = true
+            addTextBtn.isEnabled = false
+            removeTextBtn.isEnabled = true
+            textSizeSlider.isEnabled = true
+            textSizeSlider.setValue(textFieldStatus.fontSize, animated: true)
+        } else {
+            textColorWhiteBtn.isEnabled = false
+            textColorBlackBtn.isEnabled = false
+            addTextBtn.isEnabled = true
+            removeTextBtn.isEnabled = false
+            textSizeSlider.isEnabled = false
         }
     }
     // 顯示主功能 active
@@ -244,5 +274,47 @@ class RetouchViewController: UIViewController {
         currentMode = .photoEffect
         setModeIcon()
     }
-    
+    @IBAction func setTextEditMode(_ sender: Any) {
+        guard currentMode != .textEdit else {
+            return
+        }
+        currentMode = .textEdit
+        setModeIcon()
+    }
+    @IBAction func addTextField(_ sender: Any) {
+        guard retouchStatus.textField == nil else {
+            return
+        }
+        retouchStatus.textField = TextFieldInfo()
+        setTextEditSub()
+        editImageView!.createTextField()
+    }
+    @IBAction func removeTextField(_ sender: Any) {
+        guard retouchStatus.textField != nil else {
+            return
+        }
+        retouchStatus.textField = nil
+        setTextEditSub()
+        editImageView!.removeTextField()
+    }
+    @IBAction func changeFontSize(_ sender: UISlider) {
+        guard retouchStatus.textField != nil else {
+            return
+        }
+        editImageView!.setFontSize(value: sender.value)
+    }
+    @IBAction func setTextColorWhite(_ sender: Any) {
+        guard retouchStatus.textField != nil else {
+            return
+        }
+        retouchStatus.textField?.color = .white
+        editImageView?.setFontColor(.white)
+    }
+    @IBAction func setTextColorBlack(_ sender: Any) {
+        guard retouchStatus.textField != nil else {
+            return
+        }
+        retouchStatus.textField?.color = .black
+        editImageView?.setFontColor(.black)
+    }
 }

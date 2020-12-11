@@ -12,6 +12,8 @@
 		EB30F88E2581FA8600E93AAE /* FilterProp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F88D2581FA8600E93AAE /* FilterProp.swift */; };
 		EB30F89A25820FF500E93AAE /* PhotoEffectUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F89925820FF500E93AAE /* PhotoEffectUIView.swift */; };
 		EB30F89D258210AC00E93AAE /* PhotoEffectEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F89C258210AC00E93AAE /* PhotoEffectEnum.swift */; };
+		EB30F8A02582703700E93AAE /* DraggableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F89F2582703700E93AAE /* DraggableTextField.swift */; };
+		EB30F8A3258279F400E93AAE /* TextFieldInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F8A2258279F400E93AAE /* TextFieldInfo.swift */; };
 		EBE140C2257FBA63009B5249 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE140C1257FBA63009B5249 /* PhotoCell.swift */; };
 		EBFD5C74257E5BBC0049A1EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */; };
 		EBFD5C76257E5BBC0049A1EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */; };
@@ -28,6 +30,8 @@
 		EB30F88D2581FA8600E93AAE /* FilterProp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProp.swift; sourceTree = "<group>"; };
 		EB30F89925820FF500E93AAE /* PhotoEffectUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEffectUIView.swift; sourceTree = "<group>"; };
 		EB30F89C258210AC00E93AAE /* PhotoEffectEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEffectEnum.swift; sourceTree = "<group>"; };
+		EB30F89F2582703700E93AAE /* DraggableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableTextField.swift; sourceTree = "<group>"; };
+		EB30F8A2258279F400E93AAE /* TextFieldInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInfo.swift; sourceTree = "<group>"; };
 		EBE140C1257FBA63009B5249 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		EBFD5C70257E5BBC0049A1EC /* photo-retouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "photo-retouch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +79,9 @@
 				EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */,
 				EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */,
 				EBFD5C79257E5BBC0049A1EC /* Main.storyboard */,
+				EB30F89F2582703700E93AAE /* DraggableTextField.swift */,
 				EB30F8892581B84500E93AAE /* RetouchStatus.swift */,
+				EB30F8A2258279F400E93AAE /* TextFieldInfo.swift */,
 				EB30F88D2581FA8600E93AAE /* FilterProp.swift */,
 				EB30F89C258210AC00E93AAE /* PhotoEffectEnum.swift */,
 				EBE140C1257FBA63009B5249 /* PhotoCell.swift */,
@@ -161,6 +167,7 @@
 				EB251F10257E693800038F5D /* RetouchViewController.swift in Sources */,
 				EBFD5C74257E5BBC0049A1EC /* AppDelegate.swift in Sources */,
 				EB30F89D258210AC00E93AAE /* PhotoEffectEnum.swift in Sources */,
+				EB30F8A3258279F400E93AAE /* TextFieldInfo.swift in Sources */,
 				EB30F89A25820FF500E93AAE /* PhotoEffectUIView.swift in Sources */,
 				EB30F88E2581FA8600E93AAE /* FilterProp.swift in Sources */,
 				EBFD5C89257E64F90049A1EC /* EditImageUIView.swift in Sources */,
@@ -168,6 +175,7 @@
 				EBFD5C76257E5BBC0049A1EC /* SceneDelegate.swift in Sources */,
 				EBE140C2257FBA63009B5249 /* PhotoCell.swift in Sources */,
 				EBFD5C8D257E67E20049A1EC /* MainViewController.swift in Sources */,
+				EB30F8A02582703700E93AAE /* DraggableTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

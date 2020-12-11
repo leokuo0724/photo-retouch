@@ -28,8 +28,7 @@ class EditImageUIView: UIView {
     var imageView = UIImageView()
     let originalImage: UIImage
     var displayImage = UIImage()
-    
-//    var retouchStatus = RetouchStatus()
+    var textField: DraggableTextField?
     
     init?(frame: CGRect, editImage: UIImage) {
         self.originalImage = editImage
@@ -45,6 +44,10 @@ class EditImageUIView: UIView {
         // 定位
         editInitialize()
         self.addSubview(imageView)
+        
+        
+//        textField.text = "text"
+//        self.addSubview(textField)
         
         // Notify photo effect
         NotificationCenter.default.addObserver(self, selector: #selector(useFilter), name: NSNotification.Name(rawValue: "useFilter"), object: nil)
@@ -80,8 +83,12 @@ class EditImageUIView: UIView {
         NotificationCenter.default.post(name: NSNotification.Name("setColorControlSub"), object: nil)
     }
     
-    // 拖拉
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 取消文字編輯
+        if let textField = textField {
+            textField.endEditing(false)
+        }
+        // 剪裁
         guard currentMode == .crop else {
             return
         }
@@ -194,6 +201,31 @@ class EditImageUIView: UIView {
                 imageView.image = filterImage
             }
         }
+    }
+    
+    func createTextField() {
+        textField = DraggableTextField(frame: CGRect(x: 0, y: 0, width: 56, height: 34))
+        textField?.textAlignment = .center
+        textField!.text = "Text"
+        textField!.textColor = .black
+        textField!.font = UIFont.boldSystemFont(ofSize: 28)
+        self.addSubview(textField!)
+    }
+    
+    func removeTextField() {
+        textField?.removeFromSuperview()        
+    }
+    
+    func setFontSize(value: Float) {
+        guard let textField = textField else {
+            return
+        }
+        textField.font = UIFont.boldSystemFont(ofSize: CGFloat(value))
+        textField.textFieldDidChange()
+    }
+    
+    func setFontColor(_ color: UIColor) {
+        textField?.textColor = color
     }
     
     // 快照

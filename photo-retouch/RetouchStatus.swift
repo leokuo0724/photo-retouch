@@ -17,4 +17,5 @@ class RetouchStatus {
         FilterProp(type: .saturation, defaultValue: 1, value: 1)
     ]
     var effect: PhotoEffect? = nil
+    var textField: TextFieldInfo? = nil
 }
