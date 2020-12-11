@@ -45,10 +45,6 @@ class EditImageUIView: UIView {
         editInitialize()
         self.addSubview(imageView)
         
-        
-//        textField.text = "text"
-//        self.addSubview(textField)
-        
         // Notify photo effect
         NotificationCenter.default.addObserver(self, selector: #selector(useFilter), name: NSNotification.Name(rawValue: "useFilter"), object: nil)
     }
@@ -79,8 +75,14 @@ class EditImageUIView: UIView {
         // 濾鏡歸零
         retouchStatus.effect = nil
         
-        // slider 歸位
-        NotificationCenter.default.post(name: NSNotification.Name("setColorControlSub"), object: nil)
+        // 移除文字
+        if let textField = textField {
+            retouchStatus.textField = nil
+            removeTextField()
+        }
+        
+        // slider 歸位、文字狀態解除
+        NotificationCenter.default.post(name: NSNotification.Name("refreshViews"), object: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

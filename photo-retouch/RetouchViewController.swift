@@ -70,7 +70,7 @@ class RetouchViewController: UIViewController {
         }
         
         // Notification
-        NotificationCenter.default.addObserver(self, selector: #selector(setColorControlSub), name: NSNotification.Name(rawValue: "setColorControlSub"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshViews), name: NSNotification.Name(rawValue: "refreshViews"), object: nil)
     }
     func setModeIcon() {
         // icon 淡色
@@ -108,7 +108,11 @@ class RetouchViewController: UIViewController {
             }
         }
     }
-    @objc func setColorControlSub() {
+    @objc func refreshViews() {
+        setModeIcon()
+        setColorControlSub()
+    }
+    func setColorControlSub() {
         let status = retouchStatus.colorControls
         // icon 淡色
         colorControlBtnStackView.subviews.forEach {
