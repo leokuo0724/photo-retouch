@@ -7,13 +7,17 @@
 
 import UIKit
 
-var imageCollection: Array<UIImage> = []
+var imageCollection: Array<UIImage> = [UIImage(named: "test")!, UIImage(named: "Default")!]
+var selectedCell: PhotoCell? = nil
 
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionViewControl: UICollectionView!
     @IBOutlet weak var newButton: UIButton!
+    
+    @IBOutlet weak var newBtnBottom: NSLayoutConstraint!
+    @IBOutlet weak var selectedFeatureViewBottom: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,12 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         newButton.layer.cornerRadius = newButton.frame.height/2
         newButton.layer.shadowOpacity = 0.4
         newButton.layer.shadowRadius = 8
+        
+        // Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(clearSelected), name: NSNotification.Name("clearSelected"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setSelectedFeatureView), name: NSNotification.Name("setSelectedFeatureView"), object: nil)
+        
+        setSelectedFeatureView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +53,30 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
         cell.cellImageView.image = imageCollection[indexPath.row]
         return cell
+    }
+    
+    
+    // 清除選取 cell
+    @objc func clearSelected() {
+        if selectedCell != nil {
+            selectedCell!.isSelected(false)
+            selectedCell = nil
+        }
+    }
+    @objc func setSelectedFeatureView() {
+        if selectedCell != nil {
+            selectedFeatureViewBottom.constant = 0
+            newBtnBottom.constant = -48
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            selectedFeatureViewBottom.constant = -72
+            newBtnBottom.constant = 48
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
 
     // 完成選擇，到次頁編輯
@@ -63,6 +97,19 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         controller.sourceType = .photoLibrary
         controller.delegate = self
         present(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func deletePhoto(_ sender: Any) {
+        let index = imageCollection.firstIndex(of: (selectedCell?.cellImageView.image)!)
+        imageCollection.remove(at: index!)
+        collectionViewControl.reloadData()
+        // 刪除後取消選取
+        clearSelected()
+        setSelectedFeatureView()
+    }
+    @IBAction func cancelSelect(_ sender: Any) {
+        clearSelected()
+        setSelectedFeatureView()
     }
     
 }
