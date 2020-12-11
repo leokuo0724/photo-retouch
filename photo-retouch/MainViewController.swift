@@ -121,6 +121,12 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     @IBAction func sharePhoto(_ sender: Any) {
         let activityViewController = UIActivityViewController(activityItems: [selectedCell?.cellImageView.image], applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
+            if success {
+                self.clearSelected()
+                self.setSelectedFeatureView()
+            }
+        }
         present(activityViewController, animated: true, completion: nil)
     }
     
