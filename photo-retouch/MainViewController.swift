@@ -7,7 +7,7 @@
 
 import UIKit
 
-var imageCollection: Array<UIImage> = [UIImage(named: "test")!, UIImage(named: "Default")!]
+var imageCollection: Array<UIImage> = []
 var selectedCell: PhotoCell? = nil
 
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -18,6 +18,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var newBtnBottom: NSLayoutConstraint!
     @IBOutlet weak var selectedFeatureViewBottom: NSLayoutConstraint!
+    
+    @IBOutlet weak var illustrationView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewWillAppear(_ animated: Bool) {
         collectionViewControl.reloadData()
+        setIllustrationView()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -55,6 +58,14 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return cell
     }
     
+    // 沒有cell時插畫呈現
+    func setIllustrationView() {
+        if imageCollection.count == 0 {
+            illustrationView.isHidden = false
+        } else {
+            illustrationView.isHidden = true
+        }
+    }
     
     // 清除選取 cell
     @objc func clearSelected() {
@@ -103,10 +114,16 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let index = imageCollection.firstIndex(of: (selectedCell?.cellImageView.image)!)
         imageCollection.remove(at: index!)
         collectionViewControl.reloadData()
+        setIllustrationView()
         // 刪除後取消選取
         clearSelected()
         setSelectedFeatureView()
     }
+    @IBAction func sharePhoto(_ sender: Any) {
+        let activityViewController = UIActivityViewController(activityItems: [selectedCell?.cellImageView.image], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func cancelSelect(_ sender: Any) {
         clearSelected()
         setSelectedFeatureView()

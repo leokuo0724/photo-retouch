@@ -53,6 +53,68 @@
                                     <outlet property="dataSource" destination="9h1-hY-wo3" id="6ua-Uk-por"/>
                                 </connections>
                             </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gS1-FA-xRj">
+                                <rect key="frame" x="0.0" y="896" width="414" height="72"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcR-od-1fi">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="72"/>
+                                        <color key="backgroundColor" red="1" green="0.34136875633689923" blue="0.16587554275657723" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="trash.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="deletePhoto:" destination="9h1-hY-wo3" eventType="touchUpInside" id="cfZ-qc-S2O"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVi-Fz-7Bp">
+                                        <rect key="frame" x="138" y="0.0" width="138" height="72"/>
+                                        <color key="tintColor" name="PrimaryColor"/>
+                                        <state key="normal" image="tray.and.arrow.down.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="sharePhoto:" destination="9h1-hY-wo3" eventType="touchUpInside" id="TtD-j0-dYb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qER-I5-dnr">
+                                        <rect key="frame" x="276" y="0.0" width="138" height="72"/>
+                                        <color key="tintColor" name="PrimaryColor"/>
+                                        <state key="normal" image="xmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="cancelSelect:" destination="9h1-hY-wo3" eventType="touchUpInside" id="kOP-tV-KSP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="GrayColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="aYK-79-vHa"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUp-x1-F9y">
+                                <rect key="frame" x="117" y="375" width="180" height="200"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illustration" translatesAutoresizingMaskIntoConstraints="NO" id="LV2-sd-MpI">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="180" id="EHw-dx-bcD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start editing photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7P-NU-j3S">
+                                        <rect key="frame" x="0.0" y="179.5" width="180" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="LV2-sd-MpI" firstAttribute="top" secondItem="PUp-x1-F9y" secondAttribute="top" id="Jw1-QG-VLS"/>
+                                    <constraint firstItem="LV2-sd-MpI" firstAttribute="leading" secondItem="PUp-x1-F9y" secondAttribute="leading" id="WnA-6z-AfZ"/>
+                                    <constraint firstAttribute="height" constant="200" id="XdP-g5-km1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Z7P-NU-j3S" secondAttribute="trailing" id="Z9c-ag-9Lc"/>
+                                    <constraint firstItem="Z7P-NU-j3S" firstAttribute="leading" secondItem="PUp-x1-F9y" secondAttribute="leading" id="a5v-X2-dTJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Z7P-NU-j3S" secondAttribute="bottom" id="dWq-mi-xbf"/>
+                                    <constraint firstAttribute="width" constant="180" id="fqH-L5-lfn"/>
+                                    <constraint firstAttribute="trailing" secondItem="LV2-sd-MpI" secondAttribute="trailing" id="jEu-Uu-vFn"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6k-RR-9uO">
                                 <rect key="frame" x="183" y="800" width="48" height="48"/>
                                 <color key="backgroundColor" name="GrayColor"/>
@@ -66,42 +128,6 @@
                                     <action selector="selectPhoto:" destination="9h1-hY-wo3" eventType="touchUpInside" id="V1k-5s-dwX"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gS1-FA-xRj">
-                                <rect key="frame" x="0.0" y="824" width="414" height="72"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcR-od-1fi">
-                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="72"/>
-                                        <color key="backgroundColor" red="1" green="0.34136875633689923" blue="0.16587554275657723" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="trash.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="deletePhoto:" destination="9h1-hY-wo3" eventType="touchUpInside" id="cfZ-qc-S2O"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVi-Fz-7Bp">
-                                        <rect key="frame" x="103.5" y="0.0" width="103.5" height="72"/>
-                                        <color key="tintColor" name="PrimaryColor"/>
-                                        <state key="normal" image="tray.and.arrow.up.fill" catalog="system"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfS-GK-cMo">
-                                        <rect key="frame" x="207" y="0.0" width="103.5" height="72"/>
-                                        <color key="tintColor" name="PrimaryColor"/>
-                                        <state key="normal" image="tray.and.arrow.down.fill" catalog="system"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qER-I5-dnr">
-                                        <rect key="frame" x="310.5" y="0.0" width="103.5" height="72"/>
-                                        <color key="tintColor" name="PrimaryColor"/>
-                                        <state key="normal" image="xmark" catalog="system"/>
-                                        <connections>
-                                            <action selector="cancelSelect:" destination="9h1-hY-wo3" eventType="touchUpInside" id="kOP-tV-KSP"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="GrayColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="aYK-79-vHa"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mpD-Yj-aKE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -109,14 +135,17 @@
                             <constraint firstAttribute="bottom" secondItem="i6k-RR-9uO" secondAttribute="bottom" constant="48" id="DXX-tD-kc5"/>
                             <constraint firstAttribute="trailing" secondItem="gS1-FA-xRj" secondAttribute="trailing" id="DeG-ha-CHE"/>
                             <constraint firstItem="gS1-FA-xRj" firstAttribute="leading" secondItem="Xbs-46-pnE" secondAttribute="leading" id="EaZ-hw-gdH"/>
+                            <constraint firstItem="PUp-x1-F9y" firstAttribute="centerY" secondItem="mpD-Yj-aKE" secondAttribute="centerY" id="GvE-yO-9gf"/>
                             <constraint firstItem="i6k-RR-9uO" firstAttribute="centerX" secondItem="mpD-Yj-aKE" secondAttribute="centerX" id="Lzf-En-Oao"/>
-                            <constraint firstAttribute="bottom" secondItem="gS1-FA-xRj" secondAttribute="bottom" id="j3N-WV-Sk5"/>
+                            <constraint firstAttribute="bottom" secondItem="gS1-FA-xRj" secondAttribute="bottom" constant="-72" id="j3N-WV-Sk5"/>
+                            <constraint firstItem="PUp-x1-F9y" firstAttribute="centerX" secondItem="mpD-Yj-aKE" secondAttribute="centerX" id="nQE-NR-k94"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Studio" id="pGj-Ta-kqZ"/>
                     <connections>
                         <outlet property="collectionLayout" destination="WWb-o3-uI4" id="fEw-ti-ZEl"/>
                         <outlet property="collectionViewControl" destination="g4s-p8-ac7" id="bVz-UI-cJm"/>
+                        <outlet property="illustrationView" destination="PUp-x1-F9y" id="1ee-I3-zrm"/>
                         <outlet property="newBtnBottom" destination="DXX-tD-kc5" id="McV-sf-8Ww"/>
                         <outlet property="newButton" destination="i6k-RR-9uO" id="aza-QW-8hR"/>
                         <outlet property="selectedFeatureViewBottom" destination="j3N-WV-Sk5" id="ZS8-Rn-pr3"/>
@@ -558,6 +587,7 @@
         <image name="crop.rotate" catalog="system" width="114" height="128"/>
         <image name="drop" catalog="system" width="101" height="128"/>
         <image name="flip.horizontal" catalog="system" width="128" height="112"/>
+        <image name="illustration" width="576" height="576"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="rotate.left" catalog="system" width="128" height="124"/>
@@ -566,7 +596,6 @@
         <image name="textformat" catalog="system" width="128" height="78"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <image name="tray.and.arrow.down.fill" catalog="system" width="128" height="114"/>
-        <image name="tray.and.arrow.up.fill" catalog="system" width="128" height="114"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="Color">
             <color red="0.95294117647058818" green="0.75686274509803919" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
