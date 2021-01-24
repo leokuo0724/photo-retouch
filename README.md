@@ -1,6 +1,6 @@
-# Monopoly Taiwan
+# Photo Retouch App
 
- <br>
+An app for retouching photos. <br>
 **Best experience size: iPhone 11**
 
 ![banner](https://miro.medium.com/max/1920/1*YKB75IujbEesaSo_eveXdA.png)
