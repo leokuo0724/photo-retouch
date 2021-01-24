@@ -14,6 +14,7 @@
 		EB30F89D258210AC00E93AAE /* PhotoEffectEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F89C258210AC00E93AAE /* PhotoEffectEnum.swift */; };
 		EB30F8A02582703700E93AAE /* DraggableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F89F2582703700E93AAE /* DraggableTextField.swift */; };
 		EB30F8A3258279F400E93AAE /* TextFieldInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB30F8A2258279F400E93AAE /* TextFieldInfo.swift */; };
+		EB82C2C125BD2A0700B61502 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EB82C2C025BD2A0700B61502 /* README.md */; };
 		EBE140C2257FBA63009B5249 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE140C1257FBA63009B5249 /* PhotoCell.swift */; };
 		EBFD5C74257E5BBC0049A1EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */; };
 		EBFD5C76257E5BBC0049A1EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD5C75257E5BBC0049A1EC /* SceneDelegate.swift */; };
@@ -32,6 +33,7 @@
 		EB30F89C258210AC00E93AAE /* PhotoEffectEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEffectEnum.swift; sourceTree = "<group>"; };
 		EB30F89F2582703700E93AAE /* DraggableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableTextField.swift; sourceTree = "<group>"; };
 		EB30F8A2258279F400E93AAE /* TextFieldInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInfo.swift; sourceTree = "<group>"; };
+		EB82C2C025BD2A0700B61502 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EBE140C1257FBA63009B5249 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		EBFD5C70257E5BBC0049A1EC /* photo-retouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "photo-retouch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFD5C73257E5BBC0049A1EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		EBFD5C67257E5BBB0049A1EC = {
 			isa = PBXGroup;
 			children = (
+				EB82C2C025BD2A0700B61502 /* README.md */,
 				EBFD5C72257E5BBC0049A1EC /* photo-retouch */,
 				EBFD5C71257E5BBC0049A1EC /* Products */,
 			);
@@ -153,6 +156,7 @@
 			files = (
 				EBFD5C80257E5BBF0049A1EC /* LaunchScreen.storyboard in Resources */,
 				EBFD5C7D257E5BBF0049A1EC /* Assets.xcassets in Resources */,
+				EB82C2C125BD2A0700B61502 /* README.md in Resources */,
 				EBFD5C7B257E5BBC0049A1EC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
