@@ -53,7 +53,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(witlthReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
         cell.cellImageView.image = imageCollection[indexPath.row]
         return cell
     }
